@@ -1,6 +1,8 @@
 # i-RevNet-based time-frequency transform for speech enhancement
 In this repository, i-RevNet-based nonlinear time-frequency transform for speech enhancement is impremented using Pytorch.
+
 Our paper can be found [here]() (in preparation).
+If you use codes in this repository, please cite this paper.
 
 In our paper, VoiceBank-DEMAND dataset \[2] (available [here](http://dx.doi.org/10.7488/ds/1356)) is used.
 
