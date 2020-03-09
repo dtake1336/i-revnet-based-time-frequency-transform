@@ -32,66 +32,66 @@ class UNet5Sigmoid(nn.Module):
         self.pad = (2, 1)
         self.hidCh = 45
         self.e1 = nn.utils.spectral_norm(
-                nn.Conv1d(1, 
+                nn.Conv2d(1, 
                           self.hidCh, 
                           self.kernelSize,
                           stride = (1, 1),
                           padding = self.pad))
         self.e2 = nn.utils.spectral_norm(
-                nn.Conv1d(self.hidCh, 
+                nn.Conv2d(self.hidCh, 
                           self.hidCh*2, 
                           self.kernelSize,
                           stride = (2, 2),
                           padding = self.pad))
         self.e3 = nn.utils.spectral_norm(
-                nn.Conv1d(self.hidCh*2, 
+                nn.Conv2d(self.hidCh*2, 
                           self.hidCh*2, 
                           self.kernelSize,
                           stride = (2, 2),
                           padding = self.pad))
         self.e4 = nn.utils.spectral_norm(
-                nn.Conv1d(self.hidCh*2, 
+                nn.Conv2d(self.hidCh*2, 
                           self.hidCh*2, 
                           self.kernelSize,
                           stride = (2, 2),
                           padding = self.pad))
         self.e5 = nn.utils.spectral_norm(
-                nn.Conv1d(self.hidCh*2, 
+                nn.Conv2d(self.hidCh*2, 
                           self.hidCh*2, 
                           self.kernelSize,
                           stride = (2, 2),
                           padding = self.pad))
         
         self.d5 = nn.utils.spectral_norm(
-                nn.ConvTranspose1d(self.hidCh*2, 
+                nn.ConvTranspose2d(self.hidCh*2, 
                                    self.hidCh*2, 
                                    self.kernelSize,
                                    stride = (2, 2),
                                    padding = self.pad,
                                    output_padding = 1))
         self.d4 = nn.utils.spectral_norm(
-                nn.ConvTranspose1d(self.hidCh*4, 
+                nn.ConvTranspose2d(self.hidCh*4, 
                                    self.hidCh*2, 
                                    self.kernelSize,
                                    stride = (2, 2),
                                    padding = self.pad,
                                    output_padding = 1))
         self.d3 = nn.utils.spectral_norm(
-                nn.ConvTranspose1d(self.hidCh*4, 
+                nn.ConvTranspose2d(self.hidCh*4, 
                                    self.hidCh*2, 
                                    self.kernelSize,
                                    stride = (2, 2),
                                    padding = self.pad,
                                    output_padding = 1))
         self.d2 = nn.utils.spectral_norm(
-                nn.ConvTranspose1d(self.hidCh*4, 
+                nn.ConvTranspose2d(self.hidCh*4, 
                                    self.hidCh, 
                                    self.kernelSize,
                                    stride = (2, 2),
                                    padding = self.pad,
                                    output_padding = 1))
         self.d1 = nn.utils.spectral_norm(
-                nn.ConvTranspose1d(self.hidCh*2, 
+                nn.ConvTranspose2d(self.hidCh*2, 
                                    1, 
                                    self.kernelSize,
                                    stride = (1, 1),
