@@ -125,66 +125,66 @@ class insNormUNet5Sigmoid(nn.Module):
         self.kernelSize = (5, 3)
         self.pad = (2, 1)
         self.hidCh = 45
-        self.e1 = nn.Conv1d(1, 
+        self.e1 = nn.Conv2d(1, 
                             self.hidCh, 
                             self.kernelSize,
                             stride = (1, 1),
                             padding = self.pad)
         self.INe1 = nn.InstanceNorm2d(self.hidCh)
-        self.e2 = nn.Conv1d(self.hidCh, 
+        self.e2 = nn.Conv2d(self.hidCh, 
                           self.hidCh*2, 
                           self.kernelSize,
                           stride = (2, 2),
                           padding = self.pad)
         self.INe2 = nn.InstanceNorm2d(self.hidCh*2)
-        self.e3 = nn.Conv1d(self.hidCh*2, 
+        self.e3 = nn.Conv2d(self.hidCh*2, 
                           self.hidCh*2, 
                           self.kernelSize,
                           stride = (2, 2),
                           padding = self.pad)
         self.INe3 = nn.InstanceNorm2d(self.hidCh*2)
-        self.e4 = nn.Conv1d(self.hidCh*2, 
+        self.e4 = nn.Conv2d(self.hidCh*2, 
                           self.hidCh*2, 
                           self.kernelSize,
                           stride = (2, 2),
                           padding = self.pad)
         self.INe4 = nn.InstanceNorm2d(self.hidCh*2)
-        self.e5 = nn.Conv1d(self.hidCh*2, 
+        self.e5 = nn.Conv2d(self.hidCh*2, 
                           self.hidCh*2, 
                           self.kernelSize,
                           stride = (2, 2),
                           padding = self.pad)
         self.INe5 = nn.InstanceNorm2d(self.hidCh*2)
         
-        self.d5 = nn.ConvTranspose1d(self.hidCh*2, 
+        self.d5 = nn.ConvTranspose2d(self.hidCh*2, 
                                    self.hidCh*2, 
                                    self.kernelSize,
                                    stride = (2, 2),
                                    padding = self.pad,
                                    output_padding = 1)
         self.INd5 = nn.InstanceNorm2d(self.hidCh*2)
-        self.d4 = nn.ConvTranspose1d(self.hidCh*4, 
+        self.d4 = nn.ConvTranspose2d(self.hidCh*4, 
                                    self.hidCh*2, 
                                    self.kernelSize,
                                    stride = (2, 2),
                                    padding = self.pad,
                                    output_padding = 1)
         self.INd4 = nn.InstanceNorm2d(self.hidCh*2)
-        self.d3 = nn.ConvTranspose1d(self.hidCh*4, 
+        self.d3 = nn.ConvTranspose2d(self.hidCh*4, 
                                    self.hidCh*2, 
                                    self.kernelSize,
                                    stride = (2, 2),
                                    padding = self.pad,
                                    output_padding = 1)
         self.INd3 = nn.InstanceNorm2d(self.hidCh*2)
-        self.d2 = nn.ConvTranspose1d(self.hidCh*4, 
+        self.d2 = nn.ConvTranspose2d(self.hidCh*4, 
                                    self.hidCh, 
                                    self.kernelSize,
                                    stride = (2, 2),
                                    padding = self.pad,
                                    output_padding = 1)
         self.INd2 = nn.InstanceNorm2d(self.hidCh*2)
-        self.d1 = nn.ConvTranspose1d(self.hidCh*2, 
+        self.d1 = nn.ConvTranspose2d(self.hidCh*2, 
                                    1, 
                                    self.kernelSize,
                                    stride = (1, 1),
