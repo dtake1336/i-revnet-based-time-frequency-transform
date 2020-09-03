@@ -14,8 +14,8 @@ import torch.nn.functional as F
 import torch.optim as optim
 
 sys.path.append('../')
-from pytorch_myUtils import takeModules as tm
-from pytorch_myUtils import torchDGT, agFuncInvDGT#, modelDifinition
+from modules import takeModules as tm
+from modules import torchDGT, agFuncInvDGT#, modelDifinition
 
 from iRevNet import modelDifinition
 
