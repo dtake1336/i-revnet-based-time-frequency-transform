@@ -15,8 +15,6 @@ import torch.optim as optim
 
 sys.path.append('../')
 from modules import takeModules as tm
-from modules import torchDGT, agFuncInvDGT#, modelDifinition
-
 from iRevNet import modelDifinition
 
 
@@ -48,7 +46,7 @@ cleanDir  = 'D:/sound_data/Voicebank_DEMAND/clean_testset_wav2'
 noisyDir  = 'D:/sound_data/Voicebank_DEMAND/noisy_testset_wav2'
 
 # save dnn directory
-dnn_dir  = './dnn_dir/'                       # DNNパラメータの保存場所   
+dnn_dir  = './dnn_dir/' 
 if(os.path.isdir(dnn_dir)==False):
     os.mkdir(dnn_dir)
     
@@ -59,7 +57,7 @@ Log_reg = 10**(-6)
 valRatio = 0.1
 speechLen = 2**15
 
-maxEpoch         = 500
+maxEpoch = 500
 
 
 initPad=red-1
@@ -97,8 +95,7 @@ sdataFns  = glob.glob(cleanDir + "/*.wav")
 xdataFns  = glob.glob(noisyDir + "/*.wav")
 testNum = len(sdataFns)
 
-dgt = torchDGT.DGT('hann', 512, 'dual', 256, 512, deviceNum, winMethod='cosWinGen')
-for utter in range(2):
+for utter in range(testNum):
     sys.stdout.write('\rTestSet: '+str(utter+1)+'/'+str(testNum)) 
     sys.stdout.flush()
     s = torch.from_numpy(tm.wavread(sdataFns[utter])[0]).cuda(deviceNum)
@@ -109,7 +106,6 @@ for utter in range(2):
     x = torch.cat( (x, torch.zeros(zp).cuda(deviceNum)), 0 ).unsqueeze(0)    
     y, phi, mask = estClean(x)
     y = y.detach()
-    sys.exit()
 
     s = s[0][:sLen]
     x = x[0][:sLen]
@@ -119,13 +115,3 @@ for utter in range(2):
     tm.wavwrite(saveFn, y.cpu().numpy(), 16000)
     
 sys.stdout.write('\n')
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
